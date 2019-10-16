@@ -2,18 +2,17 @@ var mySong;
 var myImage;
 var analyzer;
 
-function preload(){
+function preload() {
   mySong = loadSound("./assets/winter-song.mp3");
   myImage = loadImage("./assets/snowflakes.png")
 }
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
-
+  createCanvas(windowWidth, windowHeight);
   //backgorund image
   imageMode(CENTER); //change origin point of the image
   myImage.filter(GRAY);
-  image(myImage, windowWidth/2, windowHeight/2, myImage.width/2, myImage.height/2);
+  image(myImage, windowWidth / 2, windowHeight / 2, myImage.width / 2, myImage.height / 2);
 
   //creating analyzer
   analyzer = new p5.Amplitude();
@@ -28,7 +27,7 @@ function draw() {
 
   //map variables
   volume = analyzer.getLevel();
-  volume = map(volume, 0, 1, 0, height/2);
+  volume = map(volume, 0, 1, 0, height / 2);
 
   colore = analyzer.getLevel();
   colore = map(colore, 0, 1, 0, 155);
@@ -39,10 +38,10 @@ function draw() {
   //create snowflake
   push();
   strokeWeight(2.5);
-  stroke(100+colore, 100+colore, 200+colore2);
+  stroke(100 + colore, 100 + colore, 200 + colore2);
   noFill();
-  translate(windowWidth/2, windowHeight/2,);
-  rotate(frameCount/100);
+  translate(windowWidth / 2, windowHeight / 2, );
+  rotate(frameCount / 100);
   line(-volume, 0, volume, 0);
   line(0, -volume, 0, volume);
   pop();
@@ -58,9 +57,9 @@ function draw() {
 
 //play-pause when mousepressed
 function mousePressed() {
-  if(!mySong.isPlaying()){
+  if (!mySong.isPlaying()) {
     mySong.play();
-  } else{
+  } else {
     mySong.pause();
   }
 }
